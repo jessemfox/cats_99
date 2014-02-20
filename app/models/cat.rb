@@ -15,8 +15,8 @@
 class Cat < ActiveRecord::Base
   validates :birthdate, :name, :sex, :presence =>true
   validates :age, numericality: { only_integer: true }
-  validates :color, inclusion: { in: %w(black white brown tabby) }
+  validates :color, inclusion: { in: %w(Black White Brown Tabby) }
   validates :sex, inclusion: { in: %w(M F) }
 
-
+  has_many :cat_rental_requests, dependent: :destroy
 end

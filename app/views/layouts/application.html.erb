@@ -1,14 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
   <title>Cats99</title>
   <!-- <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %> -->
   <%= csrf_meta_tags %>
+
+	<style>
+
+	#cat-body {
+		background-image: url('http://thehendricksonpost.com/wp-content/uploads/2014/02/Cat-wallpaper-1.jpg');
+		font-family: verdana;
+	}
+
+	.full-input {
+		width: 40%;
+		padding: 5px;
+		padding-left: 15px;
+		margin: 5px auto;
+		height: 25px;
+		font-size: 16px;
+		border-radius: 5px;
+	}
+	.styled-select select {
+		-webkit-appearance: none;
+		height: 40px;
+		padding: 10px;
+		border: 1px solid gray;
+		border-radius: 5px;
+		margin-bottom: 15px;
+		width: 42%;
+	}
+
+	.styled-labels {
+		font-size: 16px;
+		color: #333;
+		font-weight: bold;
+
+	}
+
+	.styled-select option {
+		font-size: 16px;
+
+
+	}
+
+	.styled-submit {
+		height: 50px;
+		width: 42%;
+
+
+	}
+
+	.form-error {
+		width:100%px;
+
+	}
+
+	.form-errors {
+		background-color: #EB8D8D;
+		padding: 5px;
+		margin: 20px auto;
+		border: 2px solid gray;
+		padding: 15px;
+		border-radius: 5px;
+
+	}
+
+	table, th, td {
+	border: 1px solid black;
+	margin-bottom: 15px;
+	}
+
+	td {
+		text-align:center;
+	}
+
+	table {
+		border-collapse:collapse;
+		background: white;
+	}
+
+	.td-style {
+		padding: 5px 10px;
+	}
+
+	.cat-image {
+		margin: 11px;
+		border: 1px solid black;
+
+	}
+
+	.poloroid-cat {
+
+		background-color: #eee;
+		width: 623px;
+		padding-bottom: 20px;
+		border: 1px solid gray;
+		box-shadow: 5px 5px 5px gray;
+		-webkit-transform: rotate(3deg);
+		text-align:center;
+		font-size: 36px;
+		font-family: 'Architects Daughter';
+	}
+
+	</style>
 </head>
-<body>
+<body id='cat-body'>
+	<div style="width:100%">
 
+
+		<div style="width:1000px; margin: 10px auto; border: 2px solid gray; padding: 15px; border-radius: 5px; background-color: rgba(255, 255, 255, 0.6) ">
+			<% if flash[:errors] %>
+				<div class="form-errors">
+					<%  flash[:errors].each do |error| %>
+						<% error.each do |real_error| %>
+						<div class="form-error"><%= real_error  %></div>
+						<% end %>
+					<% end  %>
+				</div>
+			<% end %>
 <%= yield %>
-
+</div>
+</div>
 </body>
 </html>

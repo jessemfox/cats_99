@@ -36,9 +36,11 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
+
 end
 
 gem 'annotate'
+gem 'random_images', '0.0.6'
 
 
 # Use ActiveModel has_secure_password

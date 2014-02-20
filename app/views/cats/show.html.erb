@@ -1,0 +1,54 @@
+
+<!-- <h1>/h1> -->
+
+<!-- <p> Info about this kitty </p> -->
+<br/>
+<div class="poloroid-cat"><img class="cat-image" src="http://lorempixel.com/600/400/cats" /> <br/><%= @cat.name %></div>
+<br/>
+<table>
+	<tr>
+		<% @cat.attributes.keys.each do |key| %>
+    <% next if key == 'created_at' || key == 'updated_at' %>
+		<td class='td-style'><span style="font-weight:bold;"><%= key %></span></td>
+
+		<% end %>
+	</tr>
+	<tr>
+			<% @cat.attributes.each do |key, value| %>
+			<% next if key == 'created_at' || key == 'updated_at' %>
+			<td class='td-style'><%= value %></td>
+			<% end %>
+	</tr>
+
+</table>
+
+<h2> Rentals Requests For <%= @cat.name %> </h2>
+<table>
+	<tr>
+		<td class='td-style'>Start Date</td>
+		<td class='td-style'>End Date</td>
+		<td class='td-style'>approve button</td>
+		<td class='td-style'>deny button</td>
+		<!-- <td class='td-style'>Status</td> -->
+	</tr>
+
+		<% @cat.cat_rental_requests.sort_by do |rental|
+		rental.start_date
+		end.each do |rental| %>
+		<tr>
+		<td class='td-style'><%= rental.start_date %></td>
+		<td class='td-style'><%= rental.end_date %></td>
+		<td class='td-style'><%= rental.pending? ? (button_to "Approve", approve_cat_rental_request_url(rental)) : rental.status %></td>
+		<td class='td-style'><%= rental.pending? ? (button_to "Deny", deny_cat_rental_request_url(rental)) : rental.status %></td>
+		<!-- <td class='td-style'><%= rental.status %></td> -->
+		</tr>
+		<% end %>
+
+
+
+</table>
+
+<br/>
+<%= link_to "Edit this cat", edit_cat_url(@cat) %>
+<br/>
+<%= link_to "Back to all cats", cats_url  %>

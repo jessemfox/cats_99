@@ -1,0 +1,47 @@
+
+
+
+<% unless @cat.id.nil? %>
+	<form action="<%= cat_url %>" method="POST">
+<% else %>
+	<form action="<%= cats_url %>" method="POST">
+<% end %>
+<% unless @cat.id.nil? %>
+<input type='hidden' name='_method' value='PATCH' >
+<% end %>
+	<label class="styled-labels" for="cat-name" >The Cat's Name</label><br />
+	<input class="full-input" type="text" id="cat-name" name="cat[name]" value="<%= @cat.name  %>"><br />
+
+
+	<br />
+
+	<label class="styled-labels" for="cat-age" >Age: </label><br />
+	<input class="full-input" type="text" id="cat-age" name="cat[age]" value="<%= @cat.age  %>"><br />
+	<br />
+	<label class="styled-labels" for='cat-birthdate'>Birthdate:</label> <br />
+	<input class="full-input"  type="date" id="cat-birthdate" name='cat[birthdate]' value="<%= @cat.birthdate  %>">
+
+	<br />
+	<br />
+
+	<input class="styled-labels" type="radio" id="cat-sex-male" name="cat[sex]" value="M" <%= "checked" if @cat.sex == "M" %> >
+	<label class="styled-labels"  for="cat-sex-male">Male</label><br />
+
+	<input class="styled-labels" type="radio" id="cat-sex-female" name="cat[sex]" value="F" <%= "checked" if @cat.sex == "F" %>>
+		<label class="styled-labels" for="cat-sex-female">Female</label><br />
+		<br />
+	<label class="styled-labels" for='cat-color'>Color</label> <br />
+	<div class="styled-select">
+	<select class="full-input"  id="cat-color" name='cat[color]' >
+		<option value="Defualt"></option>
+		<option <%= "selected" if @cat.color == "Black" %> value= "Black">Black</option>
+		<option <%= "selected" if @cat.color == "White" %> value= "White">White</option>
+		<option <%= "selected" if @cat.color == "Brown" %> value= "Brown">Brown</option>
+		<option <%= "selected" if @cat.color == "Tabby" %> value= "Tabby">Tabby</option>
+	</select> </div><br />
+
+
+
+
+	<input class="full-input styled-submit" type='submit' value='SAVE KITTY'>
+</form>
