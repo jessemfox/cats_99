@@ -7,4 +7,6 @@
 <h3> <%= link_to "Rent a cat", new_cat_rental_request_url %> </h3>
 <br />
 
-<%= link_to "Add New Cat", new_cat_url  %>
+<% if current_user %>
+<%= link_to "Add New Cat", new_user_cat_url(current_user.id)  %>
+<% end %>

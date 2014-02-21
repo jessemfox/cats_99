@@ -2,9 +2,9 @@
 
 
 <% unless @cat.id.nil? %>
-	<form action="<%= cat_url %>" method="POST">
+	<form action="<%= user_cat_url(current_user, @cat) %>" method="POST">
 <% else %>
-	<form action="<%= cats_url %>" method="POST">
+	<form action="<%= user_cats_url(current_user, @cat) %>" method="POST">
 <% end %>
 <% unless @cat.id.nil? %>
 <input type='hidden' name='_method' value='PATCH' >
@@ -42,6 +42,8 @@
 
 
 
-
+	<input name="authenticity_token"
+	     type="hidden"
+	     value="<%= form_authenticity_token %>">
 	<input class="full-input styled-submit" type='submit' value='SAVE KITTY'>
 </form>

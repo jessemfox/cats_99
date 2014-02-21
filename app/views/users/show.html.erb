@@ -1,0 +1,12 @@
+<h1>Welcome <%= @user.username %>!</h1>
+<ul>
+<% @sessions.each do |session| %>
+		<% user_agent = UserAgent.parse(session.user_agent) %>
+		<li> You're logged in from <%= "#{session.ip}" %> using "<%= user_agent.browser %> on a <%= user_agent.platform %>.
+		<ul>
+			<li><%= button_to "Kill this session", kill_session_url(session), :method => :delete %></li>
+		</ul>
+	</li>
+
+<% end %>
+</ul>

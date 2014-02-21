@@ -27,8 +27,10 @@
 	<tr>
 		<td class='td-style'>Start Date</td>
 		<td class='td-style'>End Date</td>
-		<td class='td-style'>approve button</td>
-		<td class='td-style'>deny button</td>
+		<% if current_user && current_user.id == @cat.user_id %>
+			<td class='td-style'>approve button</td>
+			<td class='td-style'>deny button</td>
+		<% end %>
 		<!-- <td class='td-style'>Status</td> -->
 	</tr>
 
@@ -38,8 +40,10 @@
 		<tr>
 		<td class='td-style'><%= rental.start_date %></td>
 		<td class='td-style'><%= rental.end_date %></td>
-		<td class='td-style'><%= rental.pending? ? (button_to "Approve", approve_cat_rental_request_url(rental)) : rental.status %></td>
-		<td class='td-style'><%= rental.pending? ? (button_to "Deny", deny_cat_rental_request_url(rental)) : rental.status %></td>
+		<% if current_user && current_user.id == @cat.user_id %>
+			<td class='td-style'><%= rental.pending? ? (button_to "Approve", approve_cat_rental_request_url(rental)) : rental.status %></td>
+			<td class='td-style'><%= rental.pending? ? (button_to "Deny", deny_cat_rental_request_url(rental)) : rental.status %></td>
+		<% end %>
 		<!-- <td class='td-style'><%= rental.status %></td> -->
 		</tr>
 		<% end %>
@@ -49,6 +53,11 @@
 </table>
 
 <br/>
+<% if current_user && current_user.id == @cat.user_id %>
 <%= link_to "Edit this cat", edit_cat_url(@cat) %>
+<% end %>
 <br/>
 <%= link_to "Back to all cats", cats_url  %>
+
+
+

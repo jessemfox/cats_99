@@ -36,7 +36,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
-
+  gem 'useragent'
 end
 
 gem 'annotate'
@@ -44,7 +44,7 @@ gem 'random_images', '0.0.6'
 
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby', '~> 3.1.2', :require => 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'

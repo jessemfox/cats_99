@@ -121,6 +121,14 @@
 					<% end  %>
 				</div>
 			<% end %>
+
+			<% if current_user %>
+			<span> Hi, <%= current_user.username %> <%= button_to "logout", session_url, :method => :delete %></span>
+				<% else %>
+				<%= link_to "Log In An start renting cats!", new_session_url %>
+			<% end %>
+			<p></p>
+			<p></p>
 <%= yield %>
 </div>
 </div>

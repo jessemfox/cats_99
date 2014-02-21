@@ -1,6 +1,12 @@
 Cats99::Application.routes.draw do
   root to: 'cats#index'
-  resources :cats do
+
+  resources :users do
+    resources :cats, only: [:create, :new, :update]
+  end
+  resource :session, only: [:new, :create, :destroy]
+
+  resources :cats, except: [:create, :new, :update] do
     resources :cat_rental_requests, only: [:index]
   end
 
@@ -10,4 +16,6 @@ Cats99::Application.routes.draw do
       post 'deny'
     end
   end
+
+  delete 'session/:id', to: 'sessions#kill_session', as: 'kill_session'
 end

@@ -1,5 +1,5 @@
 class CatRentalRequestsController < ApplicationController
-
+  before_action :is_cat_owner, only: [:approve, :deny]
   def new
     @request = CatRentalRequest.new
     @cat_ids = Cat.pluck(:id, :name)
@@ -34,6 +34,12 @@ class CatRentalRequestsController < ApplicationController
     @rental = CatRentalRequest.find(params[:id])
     @rental.deny!
     redirect_to cat_url(@rental.cat_id)
+  end
+
+
+  def is_cat_owner
+
+    redirect_to "/" unless current_user && current_user.id == Cat.find(params[:cat_id]).user_id
   end
 
   private
